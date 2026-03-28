@@ -1748,7 +1748,7 @@ TaskStatus TimeIntegratorTaskList::CalculateHydroFlux(MeshBlock *pmb, int stage)
                                    stage_wghts[stage-1].beta);
         }
       }
-    }
+    
     return TaskStatus::next;
   }
   return TaskStatus::fail;

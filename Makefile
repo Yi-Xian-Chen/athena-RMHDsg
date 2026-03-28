@@ -40,6 +40,7 @@ SRC_FILES := $(wildcard src/*.cpp) \
     src/eos/$(EOS_FILE) \
     src/eos/eos_high_order.cpp \
     src/eos/eos_scalars.cpp \
+    src/eos/eos.cpp \
     $(wildcard src/fft/*.cpp) \
     $(wildcard src/field/*.cpp) \
     $(wildcard src/field/field_diffusion/*.cpp) \
