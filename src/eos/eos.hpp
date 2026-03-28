@@ -74,6 +74,16 @@ class EquationOfState {
     AthenaArray<Real> &s, const AthenaArray<Real> &r_old, AthenaArray<Real> &r,
     Coordinates *pco, int il, int iu, int jl, int ju, int kl, int ku);
 
+
+  void NeighborAveragingConserved(const AthenaArray<Real> &cons,
+    const AthenaArray<Real> &bcc, AthenaArray<Real> &cons_avg,
+    AthenaArray<Real> &prim_avg, int k, int j, int i,
+    int il, int iu, int jl, int ju, int kl, int ku);
+
+  void NeighborAveragingEint(const AthenaArray<Real> &cons,
+    const AthenaArray<Real> &bcc, Real &eint_avg, int k, int j, int i,
+    int il, int iu, int jl, int ju, int kl, int ku);
+
   // pass k, j, i to following 2x functions even though x1-sliced input array is expected
   // in order to accomodate position-dependent floors
 #pragma omp declare simd simdlen(SIMD_WIDTH) uniform(this,prim,k,j) linear(i)
@@ -171,6 +181,7 @@ class EquationOfState {
   // (C++11) in-class Default Member Initializer (fallback option):
   const Real float_min{std::numeric_limits<float>::min()};
   MeshBlock *pmy_block_;                 // ptr to MeshBlock containing this EOS
+    bool neighbor_flooring_;               // flag for negibhor_flooring_
   Real iso_sound_speed_, gamma_;         // isothermal Cs, ratio of specific heats
   Real density_floor_, pressure_floor_; //temperature_floor_;  // density and pressure floors
   Real energy_floor_;                    // energy floor
