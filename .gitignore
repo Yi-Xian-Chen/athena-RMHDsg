@@ -1,0 +1,21 @@
+# build
+bin/
+obj/
+*.o
+
+# outputs
+*.out
+*.vtk
+*.athdf
+*.hst
+*.tab
+
+# logs
+*.log
+*.slurm
+
+# mac
+.DS_Store
+
+# python cache
+__pycache__/

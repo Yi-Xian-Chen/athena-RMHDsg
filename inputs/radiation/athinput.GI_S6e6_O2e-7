@@ -1,0 +1,108 @@
+<comment>
+problem   = Modified swing amplification
+reference = Kim & Ostriker 2001, ApJ, 559, 70
+configure = --prob=msa --eos=isothermal --grav=blockfft -fft
+
+<job>
+problem_id = GI_S6e6_O2e-7   # problem ID: basename of output filenames
+
+<output1>
+file_type   = hdf5     # HDF5 data dump
+variable    = prim    # variables to be output
+ghost_zones = false
+dt          = 1.0       # time increment between outputs
+
+<output2>
+file_type  = hst        # History data dump
+dt         = 0.05      # time increment between outputs
+
+<output3>
+file_type  = rst       # Binary data dump
+dt         = 5.0       # time increment between outputs
+
+<time>
+cfl_number = 0.1      # The Courant, Friedrichs, & Lewy (CFL) Number
+nlim       = -1    # cycle limit
+tlim       = 200.01     # time limit
+integrator = vl2      # time integration algorithm
+xorder     = 2        # order of spatial reconstruction
+ncycle_out = 10       # interval for stdout summary info
+
+<mesh>
+nx1        = 128      # Number of zones in X1-direction
+x1min      = -4.0      # minimum value of X1
+x1max      = 4.0       # maximum value of X1
+ix1_bc     = shear_periodic      # inner-X1 boundary flag
+ox1_bc     = shear_periodic      # outer-X1 boundary flag
+
+nx2        = 128     # Number of zones in X2-direction
+x2min      = -4.0      # minimum value of X2
+x2max      = 4.0       # maximum value of X2
+ix2_bc     = periodic  # inner-X2 boundary flag
+ox2_bc     = periodic  # outer-X2 boundary flag
+
+nx3        = 64        # Number of zones in X3-direction
+x3min      = -2.0      # minimum value of X3 unit is Jean's length
+x3max      = 2.0       # maximum value of X3
+ix3_bc     = user  # inner-X3 boundary flag #open
+ox3_bc     = user  # outer-X3 boundary flag #open
+
+num_threads = 1        # maximum number of OMP threads
+
+<meshblock>
+nx1 = 8
+nx2 = 8
+nx3 = 64
+
+<hydro>
+gamma = 1.6666666666666667            # gamma = C_p/C_v
+dfloor =1.e-6 #density floor
+
+<orbital_advection>
+OAorder      = 0       # 0: w/o OA, 1: w/ OA (1st), 2: w/ OA (2nd)
+qshear       = 1.5     # shear rate
+Omega0       = 1.0   # angular velocity of the system, self-consistently
+shboxcoord   = 1       # 1=xy (default); 2=xz
+
+<self_gravity>
+grav_bc = disk
+
+<radiation>
+unit   = 1
+T_unit       = 4397217.498758407
+density_unit = 4.8612818876101425e-08 #self consistently with length-unit
+length_unit  = 123424235391329.33
+nmu         = 4
+tfloor     = 1.e-5
+error_limit = 1.e-6
+nlimit = 100
+cfl_rad = 0.1
+reduced_factor = 0.5
+
+<turbulence>
+dedt       = 0.05  # Energy injection rate (for driven) or Total energy (for decaying)
+nlow       = 1    # cut-off wavenumber at low-k
+nhigh      = 16   # cut-off wavenumber at high-k
+expo       = 2.0  # power-law exponent
+tcorr      = 0.1  # correlation time for OU process (both impulsive and continuous)
+dtdrive    = 0.1  # time interval between perturbation (impulsive)
+f_shear    = 0.5  # the ratio of the shear component
+rseed      = -1   # if non-negative, seed will be set by hand (slow PS generation)
+
+
+<problem>
+turb_flag  = 1    # 1 for decaying, 2 (impulsive) or 3 (continuous) for driven turbulence
+Sigmacgs = 6.e6
+Omegacgs = 2.e-7
+rhocgs 	= 1.1624256123258683e-07
+hcgs 	= 45031698336476.56
+Tcgs	= 182556.852267557
+Q         = 0.8210868912510144
+beta      = 1	#magnetic field, don't need it
+amp       = 0.0    # wave amplitude
+nwx       = -10        # wavenumber in x1
+nwy       = 5         # wavenumber in x2
+strat     = true
+
+
+#tcool     = 1000000 #don't need beta cooling for radiative transfer
