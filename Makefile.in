@@ -57,6 +57,7 @@ SRC_FILES := $(wildcard src/*.cpp) \
     $(wildcard src/thermal_conduction/*.cpp) \
     $(wildcard src/thermal_conduction/integrators/*.cpp) \
     src/hydro/rsolvers/$(RSOLVER_DIR)$(RSOLVER_FILE) \
+    src/hydro/rsolvers/$(RSOLVER_DIR)llf_single_state.cpp \
     $(wildcard src/inputs/*.cpp) \
     $(wildcard src/mesh/*.cpp) \
     $(wildcard src/multigrid/*.cpp) \
