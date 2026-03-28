@@ -202,7 +202,7 @@ void Hydro::FirstOrderFluxCorrection(Real delta, Real gam0, Real gam1, Real beta
             ApplyFOFC_Hydro(i,j,k);
           #endif
           // diffusion fluxes needs to be added
-          if (!STS_ENABLED) AddDiffusionFluxesSingleCell(i,j,k);
+          //if (!STS_ENABLED) AddDiffusionFluxesSingleCell(i,j,k);
         }
       }
     }
