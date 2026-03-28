@@ -2,7 +2,7 @@
 bin/
 obj/
 *.o
-
+Makefile
 # outputs
 *.out
 *.vtk
